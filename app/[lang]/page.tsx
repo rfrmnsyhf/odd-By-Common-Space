@@ -8,8 +8,6 @@ import { TheSpace } from '@/components/sections/TheSpace';
 import { Reviews } from '@/components/sections/Reviews';
 import { Location } from '@/components/sections/Location';
 
-export const runtime = 'edge';
-
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -20,8 +18,8 @@ export const metadata: Metadata = {
     'Specialty coffee, contemporary comfort food, and a space made for lingering in Greenland, Batam.',
 };
 
-export default function HomePage({ params }: { params: { lang: Locale } }) {
-  const { lang } = params;
+export default async function HomePage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   return (
     <>
       <Hero lang={lang} />

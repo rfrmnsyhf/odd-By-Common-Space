@@ -7,8 +7,6 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { ButtonLink } from '@/components/ui/Button';
 
-export const runtime = 'edge';
-
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
@@ -16,9 +14,9 @@ export function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: Locale };
+  params: Promise<{ lang: Locale }>;
 }): Promise<Metadata> {
-  const lang = params.lang;
+  const { lang } = await params;
   const isId = lang === 'id';
   return {
     title: isId ? 'Ruang' : 'Space',
@@ -32,8 +30,8 @@ export async function generateMetadata({
   };
 }
 
-export default function SpacePage({ params }: { params: { lang: Locale } }) {
-  const { lang } = params;
+export default async function SpacePage({ params }: { params: Promise<{ lang: Locale }> }) {
+  const { lang } = await params;
   const dict = getDict(lang);
 
   return (

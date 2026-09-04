@@ -6,14 +6,13 @@ import { localBusinessJsonLd } from '@/lib/seo';
 import { StickyNav } from '@/components/nav/StickyNav';
 import { Footer } from '@/components/sections/Footer';
 
-export const runtime = 'edge';
-
 export async function generateMetadata({
   params,
 }: {
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }): Promise<Metadata> {
-  const lang = params.lang as Locale;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
   if (!locales.includes(lang)) return {};
   const dict = getDict(lang);
   const titleBase =
@@ -50,14 +49,15 @@ export const viewport: Viewport = {
   themeColor: '#F3F0E9',
 };
 
-export default function LangLayout({
+export default async function LangLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { lang: string };
+  params: Promise<{ lang: string }>;
 }) {
-  const lang = params.lang as Locale;
+  const { lang: rawLang } = await params;
+  const lang = rawLang as Locale;
   if (!locales.includes(lang)) notFound();
 
   const businessJsonLd = localBusinessJsonLd(lang);
