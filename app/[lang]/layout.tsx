@@ -6,6 +6,8 @@ import { localBusinessJsonLd } from '@/lib/seo';
 import { StickyNav } from '@/components/nav/StickyNav';
 import { Footer } from '@/components/sections/Footer';
 
+export const runtime = 'edge';
+
 export async function generateMetadata({
   params,
 }: {

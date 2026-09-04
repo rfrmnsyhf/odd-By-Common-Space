@@ -7,6 +7,8 @@ import { SectionLabel } from '@/components/ui/SectionLabel';
 import { FadeIn } from '@/components/ui/FadeIn';
 import { ButtonLink } from '@/components/ui/Button';
 
+export const runtime = 'edge';
+
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
