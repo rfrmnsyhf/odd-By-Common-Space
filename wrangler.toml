@@ -1,6 +1,8 @@
 name = "odd-by-common-space"
 compatibility_date = "2024-11-01"
 compatibility_flags = ["nodejs_compat"]
+main = ".vercel/output/static/_worker.js/index.js"
 
 [assets]
 directory = ".vercel/output/static"
+binding = "ASSETS"
