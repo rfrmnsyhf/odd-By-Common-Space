@@ -1,5 +1,7 @@
 import type { MetadataRoute } from 'next';
 
+export const dynamic = 'force-static';
+
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://oddbycommonspace.com';
 
@@ -7,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const locales = ['en', 'id'] as const;
   const routes = ['', '/menu', '/space', '/about', '/visit'];
   const out: MetadataRoute.Sitemap = [];
+
   for (const loc of locales) {
     for (const r of routes) {
       out.push({
@@ -22,5 +25,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       });
     }
   }
+
   return out;
 }

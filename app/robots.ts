@@ -1,11 +1,16 @@
 import type { MetadataRoute } from 'next';
 
-const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://oddbycommonspace.com';
+export const dynamic = 'force-static';
 
 export default function robots(): MetadataRoute.Robots {
+  const siteUrl =
+    process.env.NEXT_PUBLIC_SITE_URL ?? 'https://oddbycommonspace.com';
+
   return {
-    rules: [{ userAgent: '*', allow: '/' }],
-    sitemap: `${SITE_URL}/sitemap.xml`,
+    rules: {
+      userAgent: '*',
+      allow: '/',
+    },
+    sitemap: `${siteUrl}/sitemap.xml`,
   };
 }
