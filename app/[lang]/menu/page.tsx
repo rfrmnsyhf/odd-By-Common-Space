@@ -6,6 +6,8 @@ import { menuJsonLd } from '@/lib/seo';
 import { SectionLabel } from '@/components/ui/SectionLabel';
 import { FadeIn } from '@/components/ui/FadeIn';
 
+export const runtime = 'edge';
+
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
