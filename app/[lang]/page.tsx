@@ -8,8 +8,6 @@ import { TheSpace } from '@/components/sections/TheSpace';
 import { Reviews } from '@/components/sections/Reviews';
 import { Location } from '@/components/sections/Location';
 
-export const runtime = 'edge';
-
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
 }
